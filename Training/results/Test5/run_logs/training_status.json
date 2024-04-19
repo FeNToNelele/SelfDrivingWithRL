@@ -1,0 +1,38 @@
+{
+    "SelfDriving": {
+        "checkpoints": [
+            {
+                "steps": 499943,
+                "file_path": "results\\Test5\\SelfDriving\\SelfDriving-499943.onnx",
+                "reward": -6.349999904632568,
+                "creation_time": 1713528600.8081079,
+                "auxillary_file_paths": [
+                    "results\\Test5\\SelfDriving\\SelfDriving-499943.pt"
+                ]
+            },
+            {
+                "steps": 737015,
+                "file_path": "results\\Test5\\SelfDriving\\SelfDriving-737015.onnx",
+                "reward": -17.834999322891235,
+                "creation_time": 1713528854.667865,
+                "auxillary_file_paths": [
+                    "results\\Test5\\SelfDriving\\SelfDriving-737015.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 737015,
+            "file_path": "results\\Test5\\SelfDriving.onnx",
+            "reward": -17.834999322891235,
+            "creation_time": 1713528854.667865,
+            "auxillary_file_paths": [
+                "results\\Test5\\SelfDriving\\SelfDriving-737015.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
