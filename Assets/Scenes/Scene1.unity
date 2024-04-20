@@ -741,6 +741,14 @@ PrefabInstance:
       propertyPath: m_SidewaysFriction.m_ExtremumSlip
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 6159528025536090116, guid: 61d34966ba0c67040b2fccc92f4fc612, type: 3}
+      propertyPath: m_Spacing.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159528025536090116, guid: 61d34966ba0c67040b2fccc92f4fc612, type: 3}
+      propertyPath: m_Spacing.y
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6697371391914038550, guid: 61d34966ba0c67040b2fccc92f4fc612, type: 3}
       propertyPath: m_Name
       value: Env

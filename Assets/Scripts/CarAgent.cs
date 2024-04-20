@@ -190,7 +190,6 @@ public class CarAgent : Agent
         false, false, false, false, false, false, false, false, false, false, false
     };
 
-
     public Transform currentGoal;
 
 
