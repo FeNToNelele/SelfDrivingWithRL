@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static CarAgent;
 
@@ -31,8 +32,7 @@ public class CarAgent : Agent
 
     public float torque = 200.0f;
     public float brakeAcceleration = 100.0f;
-    public float maxSteerAngle = 20.0f;
-    public float torqueLimit = 10f;
+    public float maxSteerAngle = 45.0f;
 
     public ControlMode controlMode;
     public Vector3 centerOfMass;
@@ -94,10 +94,6 @@ public class CarAgent : Agent
             if (wheel.axle == Axle.REAR)
             {
                 wheel.wheelCollider.motorTorque = amount * 30 * torque * Time.deltaTime;
-                //if (amount * 10 * torque * Time.deltaTime < 10)
-                //{
-                //    Debug.Log("SMALL ACCELERATION: " + amount * 10 * torque * Time.deltaTime);
-                //}
             }
         }
     }
@@ -109,7 +105,6 @@ public class CarAgent : Agent
                 AnimateWheels(wheel.wheelModel, wheel.wheelCollider);
                 AnimateWheels(wheel.wheelModel, wheel.wheelCollider);            
         }
-        
     }
 
     private void AnimateWheels(Transform wheelModel, WheelCollider wheelCollider)
@@ -168,6 +163,7 @@ public class CarAgent : Agent
     void ResetCar()
     {
         transform.rotation = initialRotation;
+        transform.localPosition = new Vector3(0, 0.1f, 0);
 
         foreach (var wheel in wheels)
         {
@@ -183,7 +179,6 @@ public class CarAgent : Agent
 
     #region RL
 
-    //public const float MAX_DISTANCE = 15f; //mennyi?
     Quaternion initialRotation;
     public List<Transform> checkpoints;
     public List<bool> checkpointHit = new List<bool>()
@@ -197,50 +192,39 @@ public class CarAgent : Agent
     public override void OnEpisodeBegin()
     {
         ResetCar();
-        transform.localPosition = new Vector3(0, 0.1f, 0);
         currentGoal = checkpoints[0];
+
+        for (int i = 0; i < checkpointHit.Count; i++)
+        {
+            checkpointHit[i] = false;
+        }
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.localPosition.x);
         sensor.AddObservation(transform.localPosition.y);
-        sensor.AddObservation(Vector3.Distance(currentGoal.localPosition, transform.localPosition));
-
-        /*foreach (Transform checkpoint in checkpoints)
-        {
-            sensor.AddObservation(checkpoint.localPosition.x); //szükséges-e?
-            sensor.AddObservation(checkpoint.localPosition.y);
-
-            
-        }*/     
+        sensor.AddObservation(Vector3.Distance(currentGoal.localPosition, transform.localPosition));   
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
         var actionTaken = actions.ContinuousActions;
 
-        float actionSpeed = (actionTaken[0] + 1) / 2; // [0, +1]
-        float actionSteering = actionTaken[1]; // [-1, +1]
-
-        //Debug.Log(String.Format("actionspeed: {0} actionsteering: {1}", actionSpeed, actionSteering));
+        float actionSpeed = (actionTaken[0] + 1) / 2;
+        float actionSteering = actionTaken[1];
 
         Accelerate(actionSpeed);
         Steer(actionSteering);
 
-        //float distance_scaled = Vector3.Distance(currentGoal.localPosition, transform.localPosition) / MAX_DISTANCE;
-        //Debug.Log(distance_scaled);
-
         //AddReward(-distance_scaled / 10); // [0, 0.1]
 
-        AddReward(-0.01f);
+        AddReward(-0.005f);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         ActionSegment<float> actions = actionsOut.ContinuousActions;
-
-        Debug.Log(String.Format("gas: {0} steer: {1}", actions[0], actions[1]));
 
         actions[0] = -1;
         actions[1] = 0;
@@ -256,103 +240,41 @@ public class CarAgent : Agent
     }
 
 
+    private Dictionary<string, (int reward, int checkpointIndex)> cpsWithRewards = new Dictionary<string, (int, int)> {
+        { "Wall", (-1, -1) },
+        { "Checkpoint1", (1, 0) },
+        { "Checkpoint2", (1, 1) },
+        { "Checkpoint3", (1, 2) },
+        { "Checkpoint4", (1, 3) },
+        { "Checkpoint5", (1, 4) },
+        { "Checkpoint6", (1, 5) },
+        { "Checkpoint7", (1, 6) },
+        { "Checkpoint8", (3, 7) },
+        { "Checkpoint9", (1, 8) },
+        { "Checkpoint10", (1, 9) },
+        { "Checkpoint11", (1, 10) }
+    };
+
     private void OnCollisionEnter(Collision collision)
     {
-        switch (collision.collider.tag)
+        string tag = collision.collider.tag;
+
+        (int reward, int checkpointIndex) = cpsWithRewards[tag];
+
+        AddReward(reward);
+
+
+        if (checkpointIndex == -1)
         {
-            case "Wall":
-                AddReward(-1);
-                EndEpisode();
-                break;
-            case "Checkpoint1":
-                if (!checkpointHit[0])
-                {
-                    AddReward(1);
-                    checkpointHit[0] = true;
-                    currentGoal = checkpoints[1];
-                }                
-                break;
-            case "Checkpoint2":
-                if (!checkpointHit[1])
-                {
-                    AddReward(2);
-                    checkpointHit[1] = true;
-                    currentGoal = checkpoints[2];
-                }
-                break;
-            case "Checkpoint3":
-                if (!checkpointHit[2])
-                {
-                    AddReward(3);
-                    checkpointHit[2] = true;
-                    currentGoal = checkpoints[3];
-                }
-                break;
-            case "Checkpoint4":
-                if (!checkpointHit[3])
-                {
-                    AddReward(4);
-                    checkpointHit[3] = true;
-                    currentGoal = checkpoints[4];
-                }
-                break;
-            case "Checkpoint5":
-                if (!checkpointHit[4])
-                {
-                    AddReward(5);
-                    checkpointHit[4] = true;
-                    currentGoal = checkpoints[5];
-                }
-                break;
-            case "Checkpoint6":
-                if (!checkpointHit[5])
-                {
-                    AddReward(6);
-                    checkpointHit[5] = true;
-                    currentGoal = checkpoints[6];
-                }
-                break;
-            case "Checkpoint7":
-                if (!checkpointHit[6])
-                {
-                    AddReward(7);
-                    checkpointHit[6] = true;
-                    currentGoal = checkpoints[7];
-                }
-                break;
-            case "Checkpoint8":
-                if (!checkpointHit[7])
-                {
-                    AddReward(8);
-                    checkpointHit[7] = true;
-                    currentGoal = checkpoints[8];
-                }
-                break;
-            case "Checkpoint9":
-                if (!checkpointHit[8])
-                {
-                    AddReward(9);
-                    checkpointHit[8] = true;
-                    currentGoal = checkpoints[9];
-                }
-                break;
-            case "Checkpoint10":
-                if (!checkpointHit[10])
-                {
-                    AddReward(1);
-                    checkpointHit[9] = true;
-                    currentGoal = checkpoints[10];
-                }
-                break;
-            case "Checkpoint11":
-                if (!checkpointHit[10])
-                {
-                    AddReward(11);
-                    checkpointHit[10] = true;
-                    currentGoal = checkpoints[0];
-                }
-                break;
+            EndEpisode();
         }
+
+
+        if ((checkpointIndex + 1) == checkpoints.Count)
+        {
+            currentGoal = checkpoints[0];
+        }
+        else currentGoal = checkpoints[(checkpointIndex + 1)];
     }
 
     #endregion

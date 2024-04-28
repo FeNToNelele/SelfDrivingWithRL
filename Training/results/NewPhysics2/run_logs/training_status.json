@@ -1,0 +1,29 @@
+{
+    "SelfDriving": {
+        "checkpoints": [
+            {
+                "steps": 86083,
+                "file_path": "results\\NewPhysics2\\SelfDriving\\SelfDriving-86083.onnx",
+                "reward": -4.5933332045873,
+                "creation_time": 1714297097.960163,
+                "auxillary_file_paths": [
+                    "results\\NewPhysics2\\SelfDriving\\SelfDriving-86083.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 86083,
+            "file_path": "results\\NewPhysics2\\SelfDriving.onnx",
+            "reward": -4.5933332045873,
+            "creation_time": 1714297097.960163,
+            "auxillary_file_paths": [
+                "results\\NewPhysics2\\SelfDriving\\SelfDriving-86083.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

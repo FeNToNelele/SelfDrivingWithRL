@@ -1,0 +1,47 @@
+{
+    "SelfDriving": {
+        "checkpoints": [
+            {
+                "steps": 499896,
+                "file_path": "results\\NewPhysics1\\SelfDriving\\SelfDriving-499896.onnx",
+                "reward": -12.904999613761902,
+                "creation_time": 1714296012.1059136,
+                "auxillary_file_paths": [
+                    "results\\NewPhysics1\\SelfDriving\\SelfDriving-499896.pt"
+                ]
+            },
+            {
+                "steps": 999914,
+                "file_path": "results\\NewPhysics1\\SelfDriving\\SelfDriving-999914.onnx",
+                "reward": null,
+                "creation_time": 1714296506.0904562,
+                "auxillary_file_paths": [
+                    "results\\NewPhysics1\\SelfDriving\\SelfDriving-999914.pt"
+                ]
+            },
+            {
+                "steps": 1323526,
+                "file_path": "results\\NewPhysics1\\SelfDriving\\SelfDriving-1323526.onnx",
+                "reward": -20.046665986378986,
+                "creation_time": 1714296889.102763,
+                "auxillary_file_paths": [
+                    "results\\NewPhysics1\\SelfDriving\\SelfDriving-1323526.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1323526,
+            "file_path": "results\\NewPhysics1\\SelfDriving.onnx",
+            "reward": -20.046665986378986,
+            "creation_time": 1714296889.102763,
+            "auxillary_file_paths": [
+                "results\\NewPhysics1\\SelfDriving\\SelfDriving-1323526.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
