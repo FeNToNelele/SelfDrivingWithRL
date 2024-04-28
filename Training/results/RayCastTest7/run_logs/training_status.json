@@ -1,0 +1,47 @@
+{
+    "SelfDriving": {
+        "checkpoints": [
+            {
+                "steps": 499997,
+                "file_path": "results\\RayCastTest7\\SelfDriving\\SelfDriving-499997.onnx",
+                "reward": -5.5262496918439865,
+                "creation_time": 1713710412.6973364,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest7\\SelfDriving\\SelfDriving-499997.pt"
+                ]
+            },
+            {
+                "steps": 999919,
+                "file_path": "results\\RayCastTest7\\SelfDriving\\SelfDriving-999919.onnx",
+                "reward": null,
+                "creation_time": 1713710819.4589097,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest7\\SelfDriving\\SelfDriving-999919.pt"
+                ]
+            },
+            {
+                "steps": 1204506,
+                "file_path": "results\\RayCastTest7\\SelfDriving\\SelfDriving-1204506.onnx",
+                "reward": -6.949999749660492,
+                "creation_time": 1713711041.8230119,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest7\\SelfDriving\\SelfDriving-1204506.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1204506,
+            "file_path": "results\\RayCastTest7\\SelfDriving.onnx",
+            "reward": -6.949999749660492,
+            "creation_time": 1713711041.8230119,
+            "auxillary_file_paths": [
+                "results\\RayCastTest7\\SelfDriving\\SelfDriving-1204506.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

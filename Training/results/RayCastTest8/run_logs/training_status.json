@@ -1,0 +1,65 @@
+{
+    "SelfDriving": {
+        "checkpoints": [
+            {
+                "steps": 999933,
+                "file_path": "results\\RayCastTest8\\SelfDriving\\SelfDriving-999933.onnx",
+                "reward": -5.263333201408386,
+                "creation_time": 1713712159.9704642,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest8\\SelfDriving\\SelfDriving-999933.pt"
+                ]
+            },
+            {
+                "steps": 1499956,
+                "file_path": "results\\RayCastTest8\\SelfDriving\\SelfDriving-1499956.onnx",
+                "reward": -6.0399997472763065,
+                "creation_time": 1713712637.5946004,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest8\\SelfDriving\\SelfDriving-1499956.pt"
+                ]
+            },
+            {
+                "steps": 1999992,
+                "file_path": "results\\RayCastTest8\\SelfDriving\\SelfDriving-1999992.onnx",
+                "reward": -5.70899977684021,
+                "creation_time": 1713713097.0415354,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest8\\SelfDriving\\SelfDriving-1999992.pt"
+                ]
+            },
+            {
+                "steps": 2499859,
+                "file_path": "results\\RayCastTest8\\SelfDriving\\SelfDriving-2499859.onnx",
+                "reward": -4.319999933242798,
+                "creation_time": 1713713562.3537636,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest8\\SelfDriving\\SelfDriving-2499859.pt"
+                ]
+            },
+            {
+                "steps": 2518838,
+                "file_path": "results\\RayCastTest8\\SelfDriving\\SelfDriving-2518838.onnx",
+                "reward": -4.656153633044316,
+                "creation_time": 1713713587.831838,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest8\\SelfDriving\\SelfDriving-2518838.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2518838,
+            "file_path": "results\\RayCastTest8\\SelfDriving.onnx",
+            "reward": -4.656153633044316,
+            "creation_time": 1713713587.831838,
+            "auxillary_file_paths": [
+                "results\\RayCastTest8\\SelfDriving\\SelfDriving-2518838.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

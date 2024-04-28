@@ -1,0 +1,29 @@
+{
+    "SelfDriving": {
+        "checkpoints": [
+            {
+                "steps": 492939,
+                "file_path": "results\\RayCastTest6\\SelfDriving\\SelfDriving-492939.onnx",
+                "reward": -3.843749925494194,
+                "creation_time": 1713709974.1040397,
+                "auxillary_file_paths": [
+                    "results\\RayCastTest6\\SelfDriving\\SelfDriving-492939.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 492939,
+            "file_path": "results\\RayCastTest6\\SelfDriving.onnx",
+            "reward": -3.843749925494194,
+            "creation_time": 1713709974.1040397,
+            "auxillary_file_paths": [
+                "results\\RayCastTest6\\SelfDriving\\SelfDriving-492939.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

@@ -183,6 +183,7 @@ public class CarAgent : Agent
 
     #region RL
 
+    //public const float MAX_DISTANCE = 15f; //mennyi?
     Quaternion initialRotation;
     public List<Transform> checkpoints;
     public List<bool> checkpointHit = new List<bool>()
@@ -226,7 +227,12 @@ public class CarAgent : Agent
 
         Accelerate(actionSpeed);
         Steer(actionSteering);
-        
+
+        //float distance_scaled = Vector3.Distance(currentGoal.localPosition, transform.localPosition) / MAX_DISTANCE;
+        //Debug.Log(distance_scaled);
+
+        //AddReward(-distance_scaled / 10); // [0, 0.1]
+
         AddReward(-0.01f);
     }
 
@@ -269,7 +275,7 @@ public class CarAgent : Agent
             case "Checkpoint2":
                 if (!checkpointHit[1])
                 {
-                    AddReward(1);
+                    AddReward(2);
                     checkpointHit[1] = true;
                     currentGoal = checkpoints[2];
                 }
@@ -277,7 +283,7 @@ public class CarAgent : Agent
             case "Checkpoint3":
                 if (!checkpointHit[2])
                 {
-                    AddReward(1);
+                    AddReward(3);
                     checkpointHit[2] = true;
                     currentGoal = checkpoints[3];
                 }
@@ -285,7 +291,7 @@ public class CarAgent : Agent
             case "Checkpoint4":
                 if (!checkpointHit[3])
                 {
-                    AddReward(1);
+                    AddReward(4);
                     checkpointHit[3] = true;
                     currentGoal = checkpoints[4];
                 }
@@ -293,7 +299,7 @@ public class CarAgent : Agent
             case "Checkpoint5":
                 if (!checkpointHit[4])
                 {
-                    AddReward(1);
+                    AddReward(5);
                     checkpointHit[4] = true;
                     currentGoal = checkpoints[5];
                 }
@@ -301,7 +307,7 @@ public class CarAgent : Agent
             case "Checkpoint6":
                 if (!checkpointHit[5])
                 {
-                    AddReward(1);
+                    AddReward(6);
                     checkpointHit[5] = true;
                     currentGoal = checkpoints[6];
                 }
@@ -309,7 +315,7 @@ public class CarAgent : Agent
             case "Checkpoint7":
                 if (!checkpointHit[6])
                 {
-                    AddReward(1);
+                    AddReward(7);
                     checkpointHit[6] = true;
                     currentGoal = checkpoints[7];
                 }
@@ -317,7 +323,7 @@ public class CarAgent : Agent
             case "Checkpoint8":
                 if (!checkpointHit[7])
                 {
-                    AddReward(1);
+                    AddReward(8);
                     checkpointHit[7] = true;
                     currentGoal = checkpoints[8];
                 }
@@ -325,13 +331,13 @@ public class CarAgent : Agent
             case "Checkpoint9":
                 if (!checkpointHit[8])
                 {
-                    AddReward(1);
+                    AddReward(9);
                     checkpointHit[8] = true;
                     currentGoal = checkpoints[9];
                 }
                 break;
             case "Checkpoint10":
-                if (!checkpointHit[9])
+                if (!checkpointHit[10])
                 {
                     AddReward(1);
                     checkpointHit[9] = true;
@@ -341,7 +347,7 @@ public class CarAgent : Agent
             case "Checkpoint11":
                 if (!checkpointHit[10])
                 {
-                    AddReward(1);
+                    AddReward(11);
                     checkpointHit[10] = true;
                     currentGoal = checkpoints[0];
                 }
